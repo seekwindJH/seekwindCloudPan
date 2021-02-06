@@ -1,0 +1,25 @@
+    .main {
+        margin: 10px auto 0px auto;
+    }
+    .custom-control-input:checked~.custom-control-label::before {
+        border-color: #2a9fd6;
+        background-color: #2a9fd6;
+    }
+    .custom-control {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+    }
+    body {
+        height: 100vh;
+    }
+    .foot {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        bottom: 6px;
+        color: #c3c2d1;
+    }

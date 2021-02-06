@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>追风の云盘</title>
+    <link id="theme" rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script id="theme" src="/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <script src="/js/select-theme.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/index.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">追风の物语</a>
+<ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/public/cloudpan/">公共云盘
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+
+    </ul>
+            <div class="custom-control custom-switch">
+                <input id="switch-mode" type="checkbox" class="custom-control-input" checked="">
+                <label class="custom-control-label" for="switch-mode"><span style="color: #ffffff">黑暗模式</span></label>
+
+            </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="card border-primary mb-3 main" style="max-width: 20rem;">
+            <div class="card-header">欢迎使用 <strong>追风の物语云盘</strong></div>
+            <div class="card-body">
+                {% if passwordFalse %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>账号</strong>或<strong>密码</strong>错误
+                </div>
+                {% endif %}
+                <!-- <h4 class="card-title">Primary card title</h4> -->
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <label for="username">账号</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                        <small class="form-text text-muted">您的账号密码会受到隐私保护</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="memCheck">
+                        <label class="form-check-label" for="memCheck">记住密码</label>
+                    </div>
+                    <button id='submit' type="submit" class="btn btn-primary">登录</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <p class="foot"> Powered by Flask </p>
+</body>
+
+</html>

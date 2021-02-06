@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>追风の物语</title>
+    <link id="theme" rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script id="theme" src="/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <script src="/js/select-theme.js"></script>
+    <script src="/js/highlight.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/night-owl.css" />
+    <link rel="stylesheet" type="text/css" href="/css/cloudpan.css" />
+    <script src="/js/cloudpan.js"></script>
+</head>
+
+<body>
+    <div id="alert" class="alert alert-dismissible alert-success" style="display:
+            {% if success %}
+            {{ 'block' }}
+            {% else %}
+            {{ 'none' }}
+            {% endif %}
+            ">
+        <button id="close-alert" type="button" class="close" data-dismiss="alert">&times;</button><a href="#"
+            class="alert-link">上传成功</a>.
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#" id="logo">{{ username }}的云盘</a>
+
+            <div class="custom-control custom-switch">
+                <input id="switch-mode" type="checkbox" class="custom-control-input" checked="">
+                <label class="custom-control-label" for="switch-mode"><span style="color: #ffffff">黑暗模式</span></label>
+            </div>
+    </nav>
+<div class="progress">
+  <div id="disk-space-bar" class="progress-bar bg-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+
+  </div>
+</div>
+    <div class="container">
+
+        <table class="table table-hover">
+            <thead>
+                <tr class="row">
+                    <th scope="col" class="col-6 col-lg-3 c">文件名</th>
+                    <th scope="col" class="col-6 col-lg-3 c">保存日期</th>
+                    <th scope="col" class="col-6 col-lg-3 c">大小</th>
+                    <th scope="col" class="col-6 col-lg-3">
+                        <input id="file" type="file">
+                        <label class="btn btn-primary" id="file-label" for="file">
+                            选择上传文件
+                        </label>
+
+                        <button id="upload" type="button" class="btn btn-success" style="display: none;">
+                            上传
+
+                        </button>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for file in files %}
+
+                <tr id="file-{{ loop.index }}" class="row table-{{ file.type }}" type="button" data-toggle="modal"
+                    data-target="#previewModal">
+                    <th scope="row" class="col-6 col-lg-3" id="name-{{ loop.index }}">
+                        {{ file.name }}
+
+                    </th>
+                    <td class="col-6 col-lg-3" id="savedate-{{ loop.index }}">{{ file.savedate }}</td>
+                    <td class="col-6 col-lg-3" id="size-{{ loop.index }}">{{ file.size }}</td>
+                    <td class="col-6 col-lg-3">
+                        <a id="btn-download-{{ loop.index }}" type="button" class="btn btn-success"
+                            href="./download/{{ file.name }}" download="{{ file.name }}">下载</a>
+                        <a id="btn-delete-{{ loop.index }}" type="button" class="btn btn-danger"
+                            href="./delete/{{ file.name }}">删除</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <!-- Preview Modal -->
+    <div class="modal fade" id="previewModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                    <pre>
+            content
+        </pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button id="saveModal" type="button" class="btn btn-primary">保存修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
