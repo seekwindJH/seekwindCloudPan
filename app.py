@@ -41,7 +41,7 @@ def login():
     if username == '' or password == '':
         return render_template('/index.html', passwordFalse=True)
     password = utils.encrypt(password)
-    redis = StrictRedis(host='localhost', port=6379, db=0, password='90153034')
+    redis = StrictRedis(host='localhost', port=6379, db=0, password='password')
     realPassword = redis.hget('userHash', username).decode('utf-8')
     if realPassword == password:
         session['username'] = username
